@@ -1,7 +1,10 @@
+// Obtenemos los 3 elementos que requerimos de nuestro DOM
+// Los elementos con clase .cod los obtenemos con un querySelector para poder iterarlos con un forEach
 const codification = document.querySelectorAll('.cod');
 const value = document.getElementById('value');
 const button = document.getElementById('randomize');
 
+// Creamos la funcion que nos devolvera un array con 3 numeros aleatorios del 0 al 255
 function randomRgb() {
     const rgb = [];
     for (let i = 0; i < 3; i++ ) {
@@ -10,6 +13,7 @@ function randomRgb() {
     return rgb;
 }
 
+// Creamos una funcion que nos devolvera un array de 6 numeros aleatorios del 0 al 16 y los mayores a 9 los convertimos a letras para tenerlos como hexadecimal
 function randomHex() {
     const numericHex = [];
     for (let i = 0; i < 6; i++) {
@@ -44,12 +48,14 @@ function randomHex() {
     return hex;
 }
 
+// creamos una funcion que itera sobre nuestros .cod para quitarles la clase .active
 function removeActiveClasses() {
     codification.forEach(cod => {
         cod.classList.remove('active');
     })
 }
 
+// aplicamos el evento a todos los .cod y solo le agregamos el .active al que clickeamos
 codification.forEach(cod => {
     cod.addEventListener('click', () => {
         removeActiveClasses();
@@ -57,7 +63,7 @@ codification.forEach(cod => {
     })
 })
 
-
+// nuestro botton llamara a las funciones de random dependiendo si se selecciono la opcion de rgb o hexadecimal y ademas podra ese valor en pantalla
 button.addEventListener('click', () => {
     if (codification[0].classList.contains('active')) {
         const rgb = randomRgb();
